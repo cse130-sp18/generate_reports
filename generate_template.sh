@@ -1,8 +1,8 @@
 #!/bin/bash
 
 convert -density 300 blank.pdf -pointsize 12 -draw " \
-  text 300,300 'Name:' \
-  text 300,360 'PID:' \
-  text 300,420 'CSE 130 Account:' \
-  text 300,480 'Grade:' \
+  text 100,100 'Name:' \
+  text 100,120 'PID:' \
+  text 100,140 'CSE 130 Account:' \
+  text 100,160 'Grade:' \
 " template.pdf

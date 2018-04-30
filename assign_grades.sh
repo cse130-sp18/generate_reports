@@ -8,14 +8,14 @@ while read -r l; do
 
   if ! [ -z "$grade" ]; then
     echo "$acc ($pid): $grade"
-    convert -density 300 blank.pdf -pointsize 12 -draw " \
-      text 300,300 'Name: $name' \
-      text 300,360 'PID: $pid' \
-      text 300,420 'CSE 130 Account: $acc' \
-      text 300,480 'Grade: $grade' \
+    convert -density 72 blank.pdf -pointsize 12 -draw " \
+      text 100,100 'Name: $name' \
+      text 100,120 'PID: $pid' \
+      text 100,140 'CSE 130 Account: $acc' \
+      text 100,160 'Grade: $grade' \
     " "${acc}-grade.pdf"
   fi
 done < students
 
-convert -density 300 *-grade.pdf 00-lambda-grades.pdf
+convert -density 72 *-grade.pdf 00-lambda-grades.pdf
 rm *-grade.pdf
