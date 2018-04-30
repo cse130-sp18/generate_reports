@@ -5,8 +5,18 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-student=$(grep "$1" students)
-num=$(wc -l <<< "$student")
+if [ -z "$2" ]; then
+  echo "ERROR: file containing student data required"
+  exit 1
+fi
+
+if [ -z "$3" ]; then
+  echo "ERROR: log.xx file required"
+  exit 1
+fi
+
+student=$(grep "$1" "$2")
+num=$(grep -c "$1" "$2")
 
 if [ "$num" -eq 0 ]; then
   echo "ERROR: '$1' doesn't identify any students"
@@ -19,7 +29,7 @@ fi
 acc=$(awk '{print $1}' <<< "$student")
 name=$(awk '{print $3" "$2}' <<< "$student")
 pid=$(awk '{print $4}' <<< "$student")
-grade=$(grep "$acc" log.00 | grep -o -E '[0-9]+\/[0-9]+')
+grade=$(grep "$acc" "$3" | grep -o -E '[0-9]+\/[0-9]+')
 
 if ! [ -z "$grade" ]; then
   echo "$acc ($pid): $grade"
